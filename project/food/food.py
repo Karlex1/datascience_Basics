@@ -3,7 +3,7 @@ import numpy as np
 import streamlit as st
 from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
-import seaborn as sns
+
 
 # Load your datasets
 food = pd.read_csv('./1662574418893344.csv')
