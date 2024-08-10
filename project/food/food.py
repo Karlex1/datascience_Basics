@@ -1,15 +1,24 @@
+import os
 import pandas as pd 
 import numpy as np 
 import streamlit as st
 from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
 
+# Get the absolute path of the directory containing this script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Construct the absolute path for the CSV files
+food_file_path = os.path.join(script_dir, '1662574418893344.csv')
+ratings_file_path = os.path.join(script_dir, 'ratings.csv')
 
 # Load your datasets
-food = pd.read_csv('./1662574418893344.csv')
-ratings = pd.read_csv('./ratings.csv')
-
-# Display the first few rows of the food data
+try:
+    food = pd.read_csv(food_file_path)
+    ratings = pd.read_csv(ratings_file_path)
+except FileNotFoundError as e:
+    st.error(f"File not found: {e.filename}")
+    st.stop()
 
 
 # Create the ratings matrix (Food_ID x User_ID)
